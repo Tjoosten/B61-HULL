@@ -28,4 +28,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Method for salting the password in the database
+     * 
+     * @param  string $password The given or generated password from the application/form 
+     * @return void
+     */
+    public function setPasswordAttribute(string $password): void 
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
 }
